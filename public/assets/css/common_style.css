@@ -1,0 +1,49 @@
+ .autocomplete{
+    width: 100%;
+    position: relative;
+}
+.autocomplete .searchResult{
+    list-style: none;
+    padding: 0px;
+    width: 100%;
+    position: absolute;
+    margin: 0;
+    background: white;
+    z-index: 1;
+}
+
+.autocomplete .searchResult li{
+    background: #F2F3F4;
+    padding: 4px;
+    margin-bottom: 1px;
+}
+
+.autocomplete .searchResult li:nth-child(even){
+    background: #E5E7E9;
+    color: black;
+}
+
+.autocomplete .searchResult li:hover{
+    cursor: pointer;
+    background: #CACFD2;
+}
+tr.summaryLine1 {
+    background-color: lightblue;
+}
+
+
+.commonTRcolor{
+   margin-left: 2%;
+   margin-bottom: 1%;
+   width: 98%;
+}
+.commonTRcolor tbody, td, tfoot, th, thead, tr{
+    padding: 10px;
+}
+.commonTRcolor thead tr{
+    background-color: #c4ebf6 !important;
+}
+.alltxtUpperCase,.alltxtUpperCase option{
+    text-transform:uppercase;
+  
+}

@@ -1,0 +1,70 @@
+--------------Yearly closing Aditya-----------------------
+1.***---Create View for the new year---****
+SHOW CREATE VIEW `view2023_24`;
+CREATE VIEW `view2024_25` AS select `tran_dpr`.`dpr_date` AS `dpr_date`,`tran_dpr_stock`.`id` AS `id`,`tran_dpr_stock`.`prod_plan_id` AS `prod_plan_id`,`tran_dpr_stock`.`mast_dpr_id` AS `mast_id`,`tran_dpr_stock`.`year` AS `year`,`tran_dpr_stock`.`doc_year` AS `doc_year`,`tran_dpr_stock`.`mast_dpr_id` AS `det_id`,'dpr' AS `type`,`tran_dpr_stock`.`part_id` AS `part_id`,`tran_dpr_stock`.`operation_id` AS `op_id`,`tran_dpr_stock`.`branch_id` AS `branch_id`,`tran_dpr_stock`.`move_from` AS `move_from`,`tran_dpr_stock`.`move_to` AS `move_to`,`tran_dpr_stock`.`issue_qty` AS `issue_qty`,`tran_dpr_stock`.`issue_doc_type` AS `issue_doc_type`,`tran_dpr_stock`.`issue_doc_id` AS `issue_doc_id`,`tran_dpr_stock`.`booked_qty` AS `booked_qty`,`tran_dpr_stock`.`booked_doc_type` AS `booked_doc_type`,`tran_dpr_stock`.`booked_doc_id` AS `booked_doc_id`,`tran_dpr_stock`.`inprocess_loss_qty` AS `inprocess_loss_qty`,`tran_dpr_stock`.`received_qty` AS `received_qty`,`tran_dpr_stock`.`received_doc_type` AS `received_doc_type`,`tran_dpr_stock`.`received_doc_id` AS `received_doc_id`,`tran_dpr_stock`.`rejected_qty` AS `rejected_qty`,`tran_dpr_stock`.`rejected_doc_type` AS `rejected_doc_type`,`tran_dpr_stock`.`rejected_doc_id` AS `rejected_doc_id`,`tran_dpr_stock`.`created_on` AS `created_on`,`tran_dpr_stock`.`isdeleted` AS `isdeleted`,`tran_dpr_stock`.`created_by` AS `created_by`,`tran_dpr_stock`.`updated_by` AS `updated_by`,`tran_dpr_stock`.`updated_on` AS `updated_on` from (`tran_dpr_stock` join `tran_dpr` on((`tran_dpr`.`id` = `tran_dpr_stock`.`mast_dpr_id`))) where (`tran_dpr_stock`.`year` = '2024 - 25') union all select `tran_dc_mast`.`date` AS `date`,`tran_dc_stock`.`id` AS `id`,`tran_dc_stock`.`prod_plan_id` AS `prod_plan_id`,`tran_dc_stock`.`mast_dc_id` AS `mast_id`,`tran_dc_stock`.`year` AS `year`,`tran_dc_stock`.`doc_year` AS `doc_year`,`tran_dc_stock`.`det_dc_id` AS `det_id`,'dc ' AS `type`,`tran_dc_stock`.`part_id` AS `part_id`,`tran_dc_stock`.`op_id` AS `op_id`,`tran_dc_stock`.`branch_id` AS `branch_id`,`tran_dc_stock`.`move_from` AS `move_from`,`tran_dc_stock`.`move_to` AS `move_to`,`tran_dc_stock`.`issue_qty` AS `issue_qty`,`tran_dc_stock`.`issue_doc_type` AS `issue_doc_type`,`tran_dc_stock`.`issue_doc_id` AS `issue_doc_id`,`tran_dc_stock`.`booked_qty` AS `booked_qty`,`tran_dc_stock`.`booked_doc_type` AS `booked_doc_type`,`tran_dc_stock`.`booked_doc_id` AS `booked_doc_id`,`tran_dc_stock`.`inprocess_loss_qty` AS `inprocess_loss_qty`,`tran_dc_stock`.`received_qty` AS `received_qty`,`tran_dc_stock`.`received_doc_type` AS `received_doc_type`,`tran_dc_stock`.`received_doc_id` AS `received_doc_id`,`tran_dc_stock`.`rejected_qty` AS `rejected_qty`,`tran_dc_stock`.`rejected_doc_type` AS `rejected_doc_type`,`tran_dc_stock`.`rejected_doc_id` AS `rejected_doc_id`,`tran_dc_stock`.`created_on` AS `created_on`,`tran_dc_stock`.`isdeleted` AS `isdeleted`,`tran_dc_stock`.`created_by` AS `created_by`,`tran_dc_stock`.`updated_by` AS `updated_by`,`tran_dc_stock`.`updated_on` AS `updated_on` from (`tran_dc_stock` join `tran_dc_mast` on((`tran_dc_stock`.`mast_dc_id` = `tran_dc_mast`.`id`))) where (`tran_dc_stock`.`year` = '2024 - 25') union all select `tran_partsrcir_mast`.`date` AS `date`,`tran_partsrcir_stock`.`id` AS `id`,`tran_partsrcir_stock`.`prod_plan_id` AS `prod_plan_id`,`tran_partsrcir_stock`.`mast_partsrcir_id` AS `mast_id`,`tran_partsrcir_stock`.`year` AS `year`,`tran_partsrcir_stock`.`doc_year` AS `doc_year`,`tran_partsrcir_stock`.`det_partsrcir_id` AS `det_id`,'rcir' AS `type`,`tran_partsrcir_stock`.`part_id` AS `part_id`,`tran_partsrcir_stock`.`op_id` AS `op_id`,`tran_partsrcir_stock`.`branch_id` AS `branch_id`,`tran_partsrcir_stock`.`move_from` AS `move_from`,`tran_partsrcir_stock`.`move_to` AS `move_to`,`tran_partsrcir_stock`.`issue_qty` AS `issue_qty`,`tran_partsrcir_stock`.`issue_doc_type` AS `issue_doc_type`,`tran_partsrcir_stock`.`issue_doc_id` AS `issue_doc_id`,`tran_partsrcir_stock`.`booked_qty` AS `booked_qty`,`tran_partsrcir_stock`.`booked_doc_type` AS `booked_doc_type`,`tran_partsrcir_stock`.`booked_doc_id` AS `booked_doc_id`,`tran_partsrcir_stock`.`inprocess_loss_qty` AS `inprocess_loss_qty`,`tran_partsrcir_stock`.`received_qty` AS `received_qty`,`tran_partsrcir_stock`.`received_doc_type` AS `received_doc_type`,`tran_partsrcir_stock`.`received_doc_id` AS `received_doc_id`,`tran_partsrcir_stock`.`rejected_qty` AS `rejected_qty`,`tran_partsrcir_stock`.`rejected_doc_type` AS `rejected_doc_type`,`tran_partsrcir_stock`.`rejected_doc_id` AS `rejected_doc_id`,`tran_partsrcir_stock`.`created_on` AS `created_on`,`tran_partsrcir_stock`.`isdeleted` AS `isdeleted`,`tran_partsrcir_stock`.`created_by` AS `created_by`,`tran_partsrcir_stock`.`updated_by` AS `updated_by`,`tran_partsrcir_stock`.`updated_on` AS `updated_on` from (`tran_partsrcir_stock` join `tran_partsrcir_mast` on((`tran_partsrcir_mast`.`id` = `tran_partsrcir_stock`.`mast_partsrcir_id`))) where ((`tran_partsrcir_stock`.`year` = '2024 - 25') and (((((`tran_partsrcir_stock`.`received_qty` + `tran_partsrcir_stock`.`issue_qty`) + `tran_partsrcir_stock`.`booked_qty`) + `tran_partsrcir_stock`.`rejected_qty`) + `tran_partsrcir_stock`.`inprocess_loss_qty`) > 0)) order by `part_id`,`type`,`det_id`
+
+
+2.***-----Tran_dpr-----******
+INSERT INTO tran_dpr_stock (`prod_plan_id`, `year`, `doc_year`, `tran_date`, `branch_id`, `mast_dpr_id`, `part_id`, `operation_id`, `move_from`, `move_to`, `issue_qty`, `issue_doc_type`, `issue_doc_id`, `received_qty`, `received_doc_type`, `received_doc_id`, `inprocess_loss_qty`, `rejected_qty`, `rejected_doc_type`, `rejected_doc_id`, `booked_qty`, `booked_doc_type`, `booked_doc_id`, `det_rmrcir_id`, `created_on`, `isdeleted`, `created_by`, `updated_by`, `updated_on`)
+select prod_plan_id,"2024 - 25" as year,doc_year,"2024-04-01" as tran_date,branch_id,mast_dpr_id,part_id,operation_id,move_from,move_to,issue_qty,issue_doc_type,issue_doc_id,sum(received_qty-issue_qty-rejected_qty-inprocess_loss_qty) as received_qty,"O.B." as received_doc_type,received_doc_id,inprocess_loss_qty,rejected_qty,rejected_doc_type,rejected_doc_id,booked_qty,booked_doc_type,booked_doc_id,det_rmrcir_id,'2024-04-01' as created_on,isdeleted,created_by,updated_by,'2024-04-01' as updated_on  from tran_dpr_stock group by mast_dpr_id HAVING received_qty>0;
+
+
+3.***-----Tran_RCIR-----******
+insert into tran_partsrcir_stock (`prod_plan_id`, `year`, `doc_year`, `tran_date`, `branch_id`, `mast_partsrcir_id`, `det_partsrcir_id`, `move_from`, `move_to`, `part_id`, `op_id`, `issue_qty`, `issue_doc_type`, `issue_doc_id`, `received_qty`, `received_doc_type`, `received_doc_id`, `booked_qty`, `booked_doc_type`, `booked_doc_id`, `inprocess_loss_qty`, `rejected_qty`, `rejected_doc_type`, `rejected_doc_id`, `det_rmrcir_id`, `created_on`, `isdeleted`, `created_by`, `updated_by`, `updated_on`)
+select prod_plan_id,"2024 - 25" as year,doc_year,"2024-04-01" as tran_date,branch_id,mast_partsrcir_id,det_partsrcir_id,move_from,move_to,part_id,op_id,issue_qty,issue_doc_type,issue_doc_id,sum(received_qty-issue_qty-rejected_qty-inprocess_loss_qty) as received_qty,"O.B." as received_doc_type,0 as received_doc_id,booked_qty,booked_doc_type,booked_doc_id,inprocess_loss_qty,rejected_qty,rejected_doc_type,rejected_doc_id,det_rmrcir_id,'2024-04-01' as created_on,isdeleted,created_by,updated_by,'2024-04-01' as updated_on from tran_partsrcir_stock group by det_partsrcir_id HAVING received_qty>0;
+
+
+4.***-----Tran_DC Stock-----******
+
+INSERT INTO tran_dc_stock(`prod_plan_id`, `year`, `rm_id`, `doc_year`, `tran_date`, `mast_dc_id`, `det_dc_id`, `branch_id`, `part_id`, `op_id`, `move_from`, `move_to`, `issue_qty`, `issue_doc_type`, `issue_doc_id`, `inprocess_loss_qty`, `received_qty`, `received_doc_type`, `received_doc_id`, `rejected_qty`, `rejected_doc_type`, `rejected_doc_id`, `booked_qty`, `booked_doc_type`, `booked_doc_id`, `det_rmrcir_id`, `created_on`, `isdeleted`, `created_by`, `updated_by`, `updated_on`)
+select prod_plan_id,"2024 - 25" as year,rm_id,doc_year,"2024-04-01" as tran_date, mast_dc_id, det_dc_id,branch_id,part_id,op_id,move_from,move_to,abs(sum(received_qty-issue_qty-rejected_qty-inprocess_loss_qty)) as issue_qty,issue_doc_type,issue_doc_id,inprocess_loss_qty,received_qty,received_doc_type,received_doc_id,rejected_qty,rejected_doc_type,rejected_doc_id,booked_qty,booked_doc_type,booked_doc_id,det_rmrcir_id,'2024-04-01' as created_on,isdeleted,created_by,updated_by,'2024-04-01' as updated_on  from tran_dc_stock group by det_dc_id HAVING issue_qty!=0;
+
+
+5.***-----tran_partspo_mast & tran_partspo_details-----******
+
+      //Code for tran_partspo_mast and tran_partspo_details PO Shifting to next year
+      
+        $query=$this->db->query("select `id`, `year`, `date`, `wef_date`, `supplier_id`, `Payment_terms`, `remarks`, `created_on`, `created_by`, `updated_on`, `updated_by` from tran_partspo_mast where year='2023 - 24'");
+	    $poMast=$query->result_array();
+	    
+	       // echo "<pre>"; print_r($poMast); echo "</pre>";
+	    	foreach ($poMast as $key => $mast) 
+			{
+			    //SELECT `id`, `year`, `date`, `wef_date`, `supplier_id`, `Payment_terms`, `remarks`, `created_on`, `created_by`, `updated_on`, `updated_by` FROM `tran_partspo_mast` WHERE 1
+              	$postDate = array(
+				'supplier_id' 		=> $mast['supplier_id'],
+				'date' 				=> '2024-04-01',
+				'wef_date' 			=> '2024-04-01',
+				'year'				=> '2024 - 25',
+				'remarks' 			=> $mast['remarks'],
+				'Payment_terms' 	=> $mast['Payment_terms'],
+				'created_by ' 		=> $mast['created_by'],
+				'created_on ' 		=> $mast['created_on'],
+				);
+			    $result=$this->db->insert('tran_partspo_mast',$postDate);
+		        $insert_id = $this->db->insert_id();
+		        
+		        //SELECT `id`, `mast_partspo_id`, `part_id`, `op_id`, `qty`, `qty_in_kgs`, `rate`, `uom`, `part_remark`, `igst`, `cgst`, `sgst`, `isdeleted`, `created_by`, `created_on`, `updated_by`, `updated_on` FROM `tran_partspo_details` WHERE 1
+				    $query=$this->db->query("SELECT `id`, `mast_partspo_id`, `part_id`, `op_id`, `qty`, `qty_in_kgs`, `rate`, `uom`, `part_remark`, `igst`, `cgst`, `sgst`, `isdeleted`, `created_by`, `created_on`, `updated_by`, `updated_on` FROM `tran_partspo_details` WHERE mast_partspo_id='$mast[id]' and isdeleted=0");
+	                $poDetails=$query->result_array();
+	                 foreach ($poDetails as $key => $podet) 
+			         {
+			             	$postDetails = array(
+                        				'mast_partspo_id' 	=> $insert_id,
+                        				'part_id' 			=> $podet['part_id'],
+                        				'op_id' 			=> $podet['op_id'],
+                        				'part_remark' 		=> $podet['part_remark'],
+                        				'qty' 				=> $podet['qty'],
+                        				'rate' 				=> $podet['rate'],
+                        				'uom' 				=> $podet['uom'],
+                        				'igst' 				=> $podet['igst'],
+                        				'cgst' 				=> $podet['cgst'],
+                        				'sgst' 				=> $podet['sgst'],
+                        				'created_by ' 		=> $podet['created_by'],
+                        				'created_on ' 		=> $podet['created_on'],
+                        				);
+                        				
+                        			  $result=$this->db->insert('tran_partspo_details',$postDetails);	
+			         } 
+			    
+			}
