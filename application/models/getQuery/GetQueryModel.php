@@ -1292,41 +1292,43 @@ public function getConsumpoDetails($id)
 
 		return $totalStock;
 	}
-    public function getCurrentOpQty($partId,$PreOPId,$branch_id=null)
-	{
-	    if($branch_id==null){
-	           $branch_id     =$_SESSION['branch_id'];
-	    }
-	    
-	    
-	     $query = $this->db->query("SELECT qc_requiredfor_dpr FROM mast_operation where id='$PreOPId' and isdeleted=0 ");
-	     $Opdata = $query->row_array();
-      	 $qc_requiredfor_dpr=$Opdata['qc_requiredfor_dpr'];
-      	 $totalStock = 0;
-        if($qc_requiredfor_dpr==0){
-           // echo "$$$$$$$$$$$$$";
-        	   	$query = $this->db->query("select sum(received_qty-issue_qty-inprocess_loss_qty-rejected_qty) as max_qty from tran_dpr_stock where mast_dpr_id!='9999999' and part_id = '$partId' and operation_id ='$PreOPId' and year = '$_SESSION[current_year]' and branch_id ='$branch_id'
-                           union all select sum(received_qty-issue_qty-inprocess_loss_qty-rejected_qty) as max_qty from tran_partsrcir_stock where det_partsrcir_id!='9999999' and part_id='$partId' and op_id='$PreOPId' and branch_id ='$branch_id' and year = '$_SESSION[current_year]' and (received_qty+issue_qty+inprocess_loss_qty+rejected_qty)!=0 and det_partsrcir_id!=0"); 
-                          // or  ( det_partsrcir_id in (select det_partsrcir_id FROM `tran_partsrcir_stock` where part_id='$partId' and op_id='$PreOPId' and branch_id ='$branch_id' and year = '$_SESSION[current_year]'  and (received_doc_type='p_movement' or received_doc_type='supl_pmovement' or received_doc_type='stock_adj' or issue_doc_type='stock_adj' or received_doc_type='O.B.')))");
-        	    	
-         }
-         else
-	    {
-	      // echo "@@@@@@@@@@@";
-    	    $query = $this->db->query("select sum(received_qty-issue_qty-inprocess_loss_qty-rejected_qty) as max_qty from tran_dpr_stock where mast_dpr_id!='9999999' and part_id = '$partId' and operation_id ='$PreOPId' and year = '$_SESSION[current_year]' and branch_id ='$branch_id' and mast_dpr_id in(select dpr_id from tran_dpr_quality_checks where year = '$_SESSION[current_year]')  
-    	        union all select sum(received_qty-issue_qty-inprocess_loss_qty-rejected_qty) as max_qty from tran_partsrcir_stock where det_partsrcir_id!='9999999' and part_id='$partId' and op_id='$PreOPId' and branch_id ='$branch_id' and year = '$_SESSION[current_year]' and (received_qty+issue_qty+inprocess_loss_qty+rejected_qty)!=0 and (det_partsrcir_id in(SELECT det_partsrcir_id FROM `tran_partsrcir_quality_checks` where year = '$_SESSION[current_year]'  union all select det_partsrcir_id FROM `tran_partsrcir_stock` where part_id='$partId' and op_id='$PreOPId' and branch_id ='$branch_id' and year = '$_SESSION[current_year]'  and (received_doc_type='p_movement' or received_doc_type='supl_pmovement' or issue_doc_type='p_movement' or issue_doc_type='supl_pmovement' or received_doc_type='stock_adj' or issue_doc_type='stock_adj' or received_doc_type='O.B.')) )");
-     	}
-     	$data = $query->result_array();
-     	//  echo "<br>".$this->db->last_query();
+      public function getCurrentOpQty($partId,$PreOPId,$branch_id=null)
+		{
+		   if($branch_id==null){
+				  $branch_id     =$_SESSION['branch_id'];
+		   }
+		   
+		   
+			$query = $this->db->query("SELECT qc_requiredfor_dpr FROM mast_operation where id='$PreOPId' and isdeleted=0 ");
+			$Opdata = $query->row_array();
+			  $qc_requiredfor_dpr=$Opdata['qc_requiredfor_dpr'];
+			  $totalStock = 0;
+				if($qc_requiredfor_dpr==0){
+				   // echo "$$$$$$$$$$$$$";
+				  $query = $this->db->query("select sum(received_qty-issue_qty-inprocess_loss_qty-rejected_qty) as max_qty from tran_dpr_stock where mast_dpr_id!='9999999' and part_id = '$partId' and operation_id ='$PreOPId' and year = '$_SESSION[current_year]' and branch_id ='$branch_id'
+								   union all select sum(received_qty-issue_qty-inprocess_loss_qty-rejected_qty) as max_qty from tran_partsrcir_stock where det_partsrcir_id!='9999999' and part_id='$partId' and op_id='$PreOPId' and branch_id ='$branch_id' and year = '$_SESSION[current_year]' and (received_qty+issue_qty+rejected_qty)!=0 and det_partsrcir_id!=0");
+								   //+inprocess_loss_qty
+								  // or  ( det_partsrcir_id in (select det_partsrcir_id FROM `tran_partsrcir_stock` where part_id='$partId' and op_id='$PreOPId' and branch_id ='$branch_id' and year = '$_SESSION[current_year]'  and (received_doc_type='p_movement' or received_doc_type='supl_pmovement' or received_doc_type='stock_adj' or issue_doc_type='stock_adj' or received_doc_type='O.B.')))");
+				   
+				 }
+				 else
+		   {
+			 // echo "@@@@@@@@@@@";
+			   $query = $this->db->query("select sum(received_qty-issue_qty-inprocess_loss_qty-rejected_qty) as max_qty from tran_dpr_stock where mast_dpr_id!='9999999' and part_id = '$partId' and operation_id ='$PreOPId' and year = '$_SESSION[current_year]' and branch_id ='$branch_id' and mast_dpr_id in(select dpr_id from tran_dpr_quality_checks where year = '$_SESSION[current_year]')  
+				   union all select sum(received_qty-issue_qty-inprocess_loss_qty-rejected_qty) as max_qty from tran_partsrcir_stock where det_partsrcir_id!='9999999' and part_id='$partId' and op_id='$PreOPId' and branch_id ='$branch_id' and year = '$_SESSION[current_year]' and (received_qty+issue_qty+rejected_qty)!=0 and (det_partsrcir_id in(SELECT det_partsrcir_id FROM `tran_partsrcir_quality_checks` where year = '$_SESSION[current_year]'  union all select det_partsrcir_id FROM `tran_partsrcir_stock` where part_id='$partId' and op_id='$PreOPId' and branch_id ='$branch_id' and year = '$_SESSION[current_year]'  and (received_doc_type='p_movement' or received_doc_type='supl_pmovement' or issue_doc_type='p_movement' or issue_doc_type='supl_pmovement' or received_doc_type='stock_adj' or issue_doc_type='stock_adj' or received_doc_type='O.B.')) )");
+			  }
+			  //+inprocess_loss_qty
+			  $data = $query->result_array();
+			 //  echo "<br>".$this->db->last_query();
 		$totalStock = 0;
 		if(!empty($data))
 		{
-			foreach ($data as $key => $value) {
-				$totalStock += $value['max_qty'];
-			}
+		foreach ($data as $key => $value) {
+		$totalStock += $value['max_qty'];
+		}
 		}
 		return $totalStock;
-	}
+		}
 	public function getTranPartStkAdjCurrQty($partId,$PreOPId,$type,$bsid,$to_date){
 	    
     if($type=='B'){
